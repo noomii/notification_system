@@ -23,6 +23,7 @@ module NotificationSystem
         begin
           subscription.create_scheduled_notifications
         rescue Exception => exception
+          NotificationSystem.log("Exception of type #{exception.class} (notification_type_subscription_id = #{self.id})")
           NotificationSystem.report_exception(exception)
         end
       end
