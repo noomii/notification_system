@@ -13,6 +13,7 @@ module NotificationSystem
             
     def deliver
       if self.recipient.wants_notification?(self)
+        NotificationSystem.log_normal("Sent email to #{self.recipient.email} (class = #{self.class}) (notification_id = #{notification.id})")
         Notification.mailer_class.send("deliver_#{self.class.template_name}", self)      
         self.update_attributes!(:sent_at => Time.now.utc)
       else
