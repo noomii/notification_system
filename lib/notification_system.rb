@@ -6,6 +6,7 @@ $: << File.expand_path(__FILE__).split('/')[0..-3].join('/') # append plugin roo
 module NotificationSystem
   autoload :Event,                          'lib/notification_system/event'
   autoload :Notification,                   'lib/notification_system/notification'
+  autoload :NotificationErrorEvent,         'lib/notification_system/notification_error_event'
   autoload :NotificationTypeSubscription,   'lib/notification_system/notification_type_subscription'
   autoload :Recurrence,                     'lib/notification_system/recurrence'
   autoload :UserExtension,                  'lib/notification_system/user_extension'

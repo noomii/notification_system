@@ -1,3 +1,4 @@
+require 'machinist'
 require 'machinist/active_record'
 
 NotificationSystem::Recurrence.blueprint do
@@ -12,6 +13,7 @@ end
 
 User.blueprint {}
 RandomEvent.blueprint {}
+
 
 RandomNotification.blueprint do
   recipient { User.make }

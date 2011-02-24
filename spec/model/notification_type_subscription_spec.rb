@@ -4,7 +4,7 @@ describe 'NotificationTypeSubscription' do
   it 'should be invalid without a subscriber' do
     s = NotificationTypeSubscription.make_unsaved :subscriber => nil
     s.save
-    s.errors.on(:subscriber).should include('can\'t be blank')
+    s.errors.on(:subscriber).should include('must be present')
   end
   
   it 'should be invalid without a notification type' do

@@ -5,6 +5,7 @@
 NOTIFICATION_ROOT = File.expand_path(__FILE__).split('/')[0..-3].join('/')
 $: << NOTIFICATION_ROOT
 
+require 'rubygems'
 require 'active_record'
 require 'rails_generator'
 require 'rails_generator/scripts/generate'
@@ -35,6 +36,7 @@ Spec::Runner.configure do |config|
     ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :database => ':memory:')    
     ActiveRecord::Schema.define(:version => 1) do    
       create_table :users do |t|
+        t.string :email
         t.string :timezone
       end
       

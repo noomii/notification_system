@@ -129,6 +129,23 @@ describe 'Notification' do
         Notification.find_by_id(@notification.id).should be_nil
       end
     end
+
+    describe 'and there is a failure with the sending' do
+
+      before(:each) do
+        Notification.mailer = :faulty_mailer
+        @radu.stubs(:wants_notification?).returns(true)
+        @notification = RandomNotification.make
+        @notification.recipient = @radu
+      end
+
+      it 'should register a new Event about notification failure' do
+        lambda do
+          @notification.deliver 
+        end.should change(Event, :count).by(1)
+      end
+
+    end
   end
 
   describe 'deliver_pending class method' do

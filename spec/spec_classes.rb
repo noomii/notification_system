@@ -1,4 +1,5 @@
 require 'action_mailer'
+require 'net/smtp'
 
 ###################################
 ## Notifications
@@ -19,6 +20,12 @@ class NotificationWithGroup < NotificationSystem::Notification
 end
 class DailyNotification < NotificationSystem::Notification
   every 1.day, :at => '6:00am'
+end
+
+class FaultyMailer 
+  def self.deliver_random_notification(instance)
+    raise Net::ProtocolError.new('Controlled Error')
+  end
 end
 
 ###################################
