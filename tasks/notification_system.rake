@@ -4,7 +4,9 @@ namespace :notification_system do
     desc "Creates and delivers pending notifications"
     task :deliver => :environment do
       begin
-        NotificationSystem::NotificationTypeSubscription.create_scheduled_notifications
+        # We are removing recurring notifications for now
+        # it's pretty buggy
+        #NotificationSystem::NotificationTypeSubscription.create_scheduled_notifications
         NotificationSystem::Notification.deliver_pending
       rescue Exception => exception
         NotificationSystem.report_exception(exception)
