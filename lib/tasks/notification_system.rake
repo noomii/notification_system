@@ -3,13 +3,14 @@ namespace :notification_system do
     # UNTESTED
     desc "Creates and delivers pending notifications"
     task :deliver => :environment do
-      begin
-        # We are removing recurring notifications for now
-        # it's pretty buggy
-        #NotificationSystem::NotificationTypeSubscription.create_scheduled_notifications
-        NotificationSystem::Notification.deliver_pending
-      rescue Exception => exception
-        NotificationSystem.report_exception(exception)
+      if RAILS_ENV == 'production'
+        begin
+          # We are removing recurring notifications for now
+          # it's pretty buggy
+          #NotificationSystem::NotificationTypeSubscription.create_scheduled_notifications
+        rescue Exception => exception
+          NotificationSystem.report_exception(exception)
+        end
       end
     end  
   end
