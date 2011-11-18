@@ -1,7 +1,6 @@
 namespace :notification_system do
   namespace :notifications do
     # UNTESTED
-    # This plugin need serious refactor. 
     desc "Creates and delivers pending notifications"
     task :deliver => :environment do
       if RAILS_ENV == 'production'
